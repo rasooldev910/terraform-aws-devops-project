@@ -48,7 +48,7 @@ resource "aws_iam_role_policy_attachment" "github_actions_admin" {
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
-# Output the role ARN
+# Output
 
 output "github_actions_role_arn" {
   description = "IAM role ARN used by GitHub Actions"
