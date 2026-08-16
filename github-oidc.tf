@@ -33,7 +33,13 @@ resource "aws_iam_role" "github_actions" {
         Condition = {
           StringEquals = {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
-            "token.actions.githubusercontent.com:sub" = "repo:rasooldev910/terraform-aws-devops-project:ref:refs/heads/main"
+          }
+          StringLike = {
+            "token.actions.githubusercontent.com:sub" = [
+              "repo:rasooldev910/terraform-aws-devops-project:ref:refs/heads/main",
+              "repo:rasooldev910/terraform-aws-devops-project:environment:production",
+              "repo:rasooldev910/terraform-aws-devops-project:pull_request"
+            ]
           }
         }
       }
@@ -54,4 +60,3 @@ output "github_actions_role_arn" {
   description = "IAM role ARN used by GitHub Actions"
   value       = aws_iam_role.github_actions.arn
 }
-#updated
