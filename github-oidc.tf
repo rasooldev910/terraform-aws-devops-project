@@ -36,6 +36,9 @@ resource "aws_iam_role" "github_actions" {
           }
           StringLike = {
             "token.actions.githubusercontent.com:sub" = [
+              "repo:rasooldev910@169166580/terraform-aws-devops-project@1333253058:ref:refs/heads/main",
+              "repo:rasooldev910@169166580/terraform-aws-devops-project@1333253058:environment:production",
+              "repo:rasooldev910@169166580/terraform-aws-devops-project@1333253058:pull_request",
               "repo:rasooldev910/terraform-aws-devops-project:ref:refs/heads/main",
               "repo:rasooldev910/terraform-aws-devops-project:environment:production",
               "repo:rasooldev910/terraform-aws-devops-project:pull_request"
