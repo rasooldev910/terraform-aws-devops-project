@@ -1,12 +1,16 @@
+```yaml
 name: Terraform AWS CI/CD
 
 on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
+
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -14,7 +18,7 @@ permissions:
 
 jobs:
   terraform:
-    name: Terraform
+    name: Terraform CI
     runs-on: ubuntu-latest
 
     steps:
@@ -44,3 +48,33 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+
+  terraform-apply:
+    name: Terraform CD - Apply
+    needs: terraform
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::635054837309:role/github-actions-terraform-role
+          aws-region: us-east-1
+
+      - name: Verify AWS identity
+        run: aws sts get-caller-identity
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+```
