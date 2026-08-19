@@ -4,14 +4,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-    res.send(`
+  res.send(`
     <html>
       <head>
         <title>DevOps Application</title>
       </head>
       <body>
         <h1>🚀 DevOps Application</h1>
-        <p>Node.js application deployed with Docker, Jenkins and AWS.</p>
+        <p>Node.js application deployed with Docker, EKS, and Argo CD - GitOps Pipeline v2!</p>
         <p>Environment: ${process.env.NODE_ENV || "development"}</p>
       </body>
     </html>
@@ -19,12 +19,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-    res.status(200).json({
-        status: "healthy",
-        application: "devops-nodejs-app"
-    });
+  res.status(200).json({
+    status: "healthy",
+    application: "devops-nodejs-app"
+  });
 });
 
 app.listen(PORT, () => {
-    console.log(`Application running on port ${PORT}`);
+  console.log(`Application running on port ${PORT}`);
 });
