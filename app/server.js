@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
       </head>
       <body>
         <h1>🚀 DevOps Application</h1>
-        <p>Node.js application deployed with Docker, EKS, and Argo CD - GitOps Pipeline v2!</p>
+        <p>Node.js application deployed with Docker, EKS, and Argo CD - GitOps Pipeline v3 (Now with Trivy Security!) 🔒</p>
         <p>Environment: ${process.env.NODE_ENV || "development"}</p>
       </body>
     </html>
