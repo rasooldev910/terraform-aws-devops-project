@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: devops-nodejs-app
-          image: 635054837309.dkr.ecr.us-east-1.amazonaws.com/devops-nodejs-app:e17d6a329f515c39be6e3be39f2e1d308120e070
+          image: 635054837309.dkr.ecr.us-east-1.amazonaws.com/devops-nodejs-app:d0d1662691979f5c49128bbbfa219e1d29cd95f6
           ports:
             - containerPort: 3000
           resources:
